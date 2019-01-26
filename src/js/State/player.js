@@ -8,69 +8,109 @@ export default class Player {
    * @param {SpriteSheet} spriteSheet
    */
   constructor(spriteSheet) {
+    this.rdirection = new Vector2(0, 0);
+    this.rposition = new Vector2(0, 0);
     this.direction = new Vector2(0, 0);
     this.position = new Vector2(0, 0);
     this.acceleration = 0.01;
     this.maxSpeed = 1;
     this.sprite = new Sprite(spriteSheet, 3, 7);
     this.lowSpeedTolerance = 0.05;
+
+    this.interval = setInterval(() => {
+      console.log(this.position);
+      console.log(this.direction);
+    }, 1000);
   }
 
   gameTick(tps = 60) {
     this.position.x += this.direction.x / tps;
     this.position.y += this.direction.y / tps;
 
-    this.position.x = Math.max(-1, Math.min(1, this.position.x));
-    this.position.y = Math.max(-1, Math.min(1, this.position.y));
+    this.rposition.x = Math.max(-1, Math.min(1, this.rposition.x));
+    this.rposition.y = Math.max(-1, Math.min(1, this.rposition.y));
 
     let hasAccelerated = false;
     if (Keys.getKeyName('W')) {
       hasAccelerated = true;
-      this.direction.y -= this.acceleration;
+      if (this.direction.y > 0) {
+        this.direction.y -= this.acceleration;
+      } else {
+        this.rdirection.y -= this.acceleration;
+      }
     }
 
     if (Keys.getKeyName('S')) {
       hasAccelerated = true;
-      this.direction.y += this.acceleration;
+      if (this.direction.y < 0) {
+        this.direction.y += this.acceleration;
+      } else {
+        this.rdirection.y += this.acceleration;
+      }
     }
 
     if (Keys.getKeyName('A')) {
       hasAccelerated = true;
-      this.direction.x -= this.acceleration;
+      if (this.direction.x > 0) {
+        this.direction.x -= this.acceleration;
+      } else {
+        this.rdirection.x -= this.acceleration;
+      }
     }
 
     if (Keys.getKeyName('D')) {
       hasAccelerated = true;
-      this.direction.x += this.acceleration;
+      if (this.direction.x < 0) {
+        this.direction.x += this.acceleration;
+      } else {
+        this.rdirection.x += this.acceleration;
+      }
+    }
+
+    if (this.rdirection.speed() > this.maxSpeed) {
+      this.rdirection.x *= 0.99;
+      this.rdirection.y *= 0.99;
     }
 
     if (this.direction.speed() > this.maxSpeed) {
-      this.direction.x *= 0.99;
-      this.direction.y *= 0.99;
+      this.direction.x *= 0.9;
+      this.direction.y *= 0.9;
     }
 
-    if (this.direction.speed() < this.lowSpeedTolerance && !hasAccelerated) {
-      this.direction.x = 0;
-      this.direction.y = 0;
+    if (this.rdirection.speed() < this.lowSpeedTolerance && !hasAccelerated) {
+      this.rdirection.x = 0;
+      this.rdirection.y = 0;
     }
 
-    if (this.position.x > 0.75 || this.position.x < -0.75 || this.position.y > 0.75 || this.position.y < -0.75) {
-      if (this.direction.x < 0 === this.position.x < 0) {
-        this.direction.x *= 0.9;
+    if (this.rposition.x > 0.05 || this.rposition.x < -0.05 || this.rposition.y > 0.05 || this.rposition.y < -0.05) {
+      if (this.rdirection.x < 0 === this.rposition.x < 0) {
+        this.rdirection.x *= 0.9;
       }
 
-      if (this.direction.y < 0 === this.position.y < 0) {
-        this.direction.y *= 0.9;
+      if (this.rdirection.y < 0 === this.rposition.y < 0) {
+        this.rdirection.y *= 0.9;
       }
     }
 
-    if (this.position.x > 0.95 || this.position.x < -0.95 || this.position.y > 0.95 || this.position.y < -0.95) {
-      if (this.direction.x < 0 === this.position.x < 0) {
-        this.direction.x *= 0;
+    if (this.rposition.x > 0.15 || this.rposition.x < -0.15 || this.rposition.y > 0.15 || this.rposition.y < -0.15) {
+      if (this.rdirection.x < 0 === this.rposition.x < 0) {
+        if (this.rdirection.x !== 0) {
+          this.direction.x += hasAccelerated ? this.rdirection.x < 0 ? -this.acceleration : this.acceleration : 0;
+        }
+
+        this.rdirection.x *= 0;
       }
 
-      if (this.direction.y < 0 === this.position.y < 0) {
-        this.direction.y *= 0;
+      if (this.rdirection.y < 0 === this.rposition.y < 0) {
+        if (this.rdirection.y !== 0) {
+          this.direction.y += hasAccelerated ? this.rdirection.y < 0 ? -this.acceleration : this.acceleration : 0;
+        }
+
+        this.rdirection.y *= 0;
+      }
+
+      if (this.rposition.x < 0.15 && this.rposition.x > -0.15 && this.rposition.y < 0.15 && this.rposition.y > -0.15) {
+        this.direction = new Vector2(0, 0);
       }
     }
   }
