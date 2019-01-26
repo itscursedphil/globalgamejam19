@@ -1,5 +1,7 @@
-const test = () => {
-	console.log('test');
-};
+import {Graphics} from './graphics';
+import {RenderedItem} from './renderedItem';
+import {Layer} from './layer';
 
-test();
+const graphics = new Graphics([new Layer([new RenderedItem()])]);
+
+console.log(graphics.canvas.height);
