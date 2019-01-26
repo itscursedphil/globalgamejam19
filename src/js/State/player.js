@@ -11,8 +11,8 @@ export default class Player {
   constructor(spriteSheet) {
 		this.direction = new Vector2(0, 0);
 		this.position = new Vector2(0, 0);
-		this.acceleration = 1;
-    this.maxSpeed = 100;
+		this.acceleration = 0.01;
+    this.maxSpeed = 1;
     this.sprite = new Sprite(spriteSheet, 0, 0);
 	}
 
@@ -46,13 +46,20 @@ export default class Player {
   }
   
   /**
-   * 
    * @param {CanvasRenderingContext2D} ctx 
    */
   render(ctx) {
     this.sprite.render(
       ctx, 
-      ctx.canvas.width / 2 - 64 + this.position.x * ctx.canvas.width / 2, 
-      ctx.canvas.height / 2 - 64 + this.position.y * ctx.canvas.height / 2);
+      Math.max(
+        0, 
+        Math.min(
+          ctx.canvas.width - 128, 
+          ctx.canvas.width / 2 - 64 + this.position.x * ctx.canvas.width / 2)), 
+      Math.max(
+        0,
+        Math.min(
+          ctx.canvas.height - 128,
+          ctx.canvas.height / 2 - 64 + this.position.y * ctx.canvas.height / 2)));
   }
 }
