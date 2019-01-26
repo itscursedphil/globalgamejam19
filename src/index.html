@@ -16,6 +16,10 @@
         margin: 0;
         padding: 0;
         background: #000;
+        position: relative;
+        /* font-family: 'PT Mono', monospace; */
+        font-family: 'Ubuntu Mono', monospace;
+        color: white;
       }
 
       #ui {
@@ -66,9 +70,31 @@
         background-image: linear-gradient(to right, #fdff83, #fdff83);
         clip: rect(0, 0, 10px, 0);
       }
+
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        pointer-events: none;
+        cursor: default;
+        /* text-transform: uppercase; */
+        font-size: 32px;
+        max-width: 620px;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 0.1em;
+      }
+
+      .text-char {
+        transition: opacity 0.05s ease-in-out;
+      }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="./js/index.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Mono|Ubuntu+Mono"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -90,5 +116,6 @@
         </div>
       </div>
     </div>
+    <script src="./js/index.js"></script>
   </body>
 </html>
