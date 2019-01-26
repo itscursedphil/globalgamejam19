@@ -1,9 +1,5 @@
 export default class SpriteSheet {
-  constructor(src = '', tileWidth = 16, tileHeight = 16, ctx) {
-    if (!ctx) {
-      throw new Error('No canvas context provided!');
-    }
-
+  constructor(src = '', tileWidth = 16, tileHeight = 16) {
     this.loaded = false;
     this.img = null;
     this.width = 0;
@@ -12,17 +8,16 @@ export default class SpriteSheet {
     this.src = src;
     this.tileWidth = tileWidth;
     this.tileHeight = tileHeight;
-    this.ctx = ctx;
   }
 
-  _loadImage() {
+  _loadImage(src) {
     const img = document.createElement('img');
 
     return new Promise(resolve => {
       img.addEventListener('load', () => {
         resolve(img);
       });
-      img.src = this.src;
+      img.src = src;
     });
   }
 
@@ -37,10 +32,7 @@ export default class SpriteSheet {
   }
 
   async load() {
-    const _img = await this._loadImage();
-
-    const type = this._getFileType();
-    this.type = type;
+    const _img = await this._loadImage(this.src);
 
     if (_img.width % this.tileWidth !== 0) {
       throw new Error('tileWidth does not match image width');
@@ -51,7 +43,10 @@ export default class SpriteSheet {
     }
 
     const img = new Image(_img.width, _img.height);
-    img.scr = this.src;
+    img.src = this.src;
+
+    const type = this._getFileType();
+    this.type = type;
 
     this.loaded = true;
     this.width = _img.width;
@@ -60,22 +55,4 @@ export default class SpriteSheet {
 
     return this;
   }
-
-  // CreateTile(x = 0, y = 0) {
-  //   const _canvas = document.createElement('canvas');
-  //   const _ctx = _canvas.getContext('2d');
-
-  //   _canvas.width = this.tileWidth;
-  //   _canvas.height = this.tileHeight;
-
-  //   _canvas.drawImage(
-  //     this.img,
-  //     this.tileWidth * x,
-  //     this.tileHeight * y,
-  //     this.tileWidth,
-  //     this.tileHeight
-  //   );
-
-  //   const tile = new Image(this.tileWidth, this.tileHeight);
-  // }
 }

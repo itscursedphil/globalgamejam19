@@ -38,7 +38,10 @@
       "browser"
     ],
     "rules": {
-      "unicorn/filename-case": false
+      "valid-jsdoc": 0,
+      "unicorn/filename-case": 0,
+      "no-unused-vars": 0,
+      "no-mixed-operators": 0
     }
   },
   "devDependencies": {
@@ -61,13 +64,5 @@
       "xo --fix",
       "git add"
     ]
-  },
-  "xo": {
-    "envs": ["node", "browser"],
-    "rules": {
-      "valid-jsdoc" : "off",
-      "unicorn/filename-case" : "off",
-      "no-unused-vars" : "off"
-    }
   }
 }
