@@ -1,9 +1,8 @@
 export class RenderedItem {
   /**
-   * @param {number} availableWidth
-   * @param {number} availableHeight
+   * @param {number} tps
    */
-  update(availableWidth, availableHeight) {
+  update(tps) {
 
   }
 
