@@ -7,11 +7,64 @@
       Odyssey
     </title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       html,
       body {
         margin: 0;
         padding: 0;
         background: #000;
+      }
+
+      #ui {
+        position: absolute;
+        width: 100%;
+        height: 40px;
+        left: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 20px;
+      }
+
+      .stat-container {
+        flex: 1;
+        padding: 0 40px;
+      }
+
+      .stat {
+        width: 100%;
+        height: 5px;
+        background-color: rgba(255, 255, 255, 0.2);
+        position: relative;
+      }
+
+      .stat-bar {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transition: all 0.1s ease-in-out;
+      }
+
+      .stat.-fuel .stat-bar {
+        background-image: linear-gradient(to right, #942248, #c86490);
+        clip: rect(0, 0, 10px, 0);
+      }
+
+      .stat.-oxygen .stat-bar {
+        background-image: linear-gradient(to right, #23ae75, #66d8b4);
+        clip: rect(0, 0, 10px, 0);
+      }
+
+      .stat.-food .stat-bar {
+        background-image: linear-gradient(to right, #fdff83, #fdff83);
+        clip: rect(0, 0, 10px, 0);
       }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,5 +73,22 @@
 
   <body>
     <canvas id="canvas"></canvas>
+    <div id="ui">
+      <div class="stat-container">
+        <div class="stat -fuel">
+          <div class="stat-bar"></div>
+        </div>
+      </div>
+      <div class="stat-container">
+        <div class="stat -oxygen">
+          <div class="stat-bar"></div>
+        </div>
+      </div>
+      <div class="stat-container">
+        <div class="stat -food">
+          <div class="stat-bar"></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
