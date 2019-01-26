@@ -1,17 +1,17 @@
 import {RenderedItem} from './renderedItem';
 
 export class Background extends RenderedItem {
-  constructor(source = "") {
-    super();
-    this.scrollSpeed = 0.1;
-    this.horizontalScrollPosition = 0;
-    this.image = document.createElement("img");
-    this.image.src = source;
-    this.image.addEventListener("load", () => this.isLoaded = true);
-    this.isLoaded = false;
-  }
+	constructor(source = '') {
+		super();
+		this.scrollSpeed = 0.1;
+		this.horizontalScrollPosition = 0;
+		this.image = document.createElement('img');
+		this.image.src = source;
+		// This.image.addEventListener('load', () => this.isLoaded = true);
+		this.isLoaded = false;
+	}
 
-  /**
+	/**
    * @param {number} availableWidth
    * @param {number} availableHeight
    */
@@ -23,7 +23,10 @@ export class Background extends RenderedItem {
    * @param {CanvasRenderingContext2D} ctx
    */
 	render(ctx) {
-    if(!this.isLoaded) return;
-    ctx.drawImage(this.image, 0, 0);
+		if (!this.isLoaded) {
+			return;
+		}
+
+		ctx.drawImage(this.image, 0, 0);
 	}
 }

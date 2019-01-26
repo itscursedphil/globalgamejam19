@@ -38,10 +38,11 @@
       "browser"
     ],
     "rules": {
-      "valid-jsdoc": 0,
       "unicorn/filename-case": 0,
       "no-unused-vars": 0,
-      "no-mixed-operators": 0
+      "no-mixed-operators": 0,
+      "valid-jsdoc" : "off",
+      "camelcase": "off"
     }
   },
   "devDependencies": {
@@ -64,5 +65,5 @@
       "xo --fix",
       "git add"
     ]
-  }
+  }  
 }
