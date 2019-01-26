@@ -53,7 +53,9 @@
     "rules": {
       "valid-jsdoc" : "off",
       "unicorn/filename-case" : "off",
-      "no-unused-vars" : "off"
+      "no-unused-vars": "off",
+      "camelcase": "off",
+      "no-mixed-operators":  "off"
     }
   }
 }
