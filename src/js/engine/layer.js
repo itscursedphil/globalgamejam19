@@ -10,12 +10,11 @@ export class Layer extends RenderedItem {
   }
 
   /**
-   * @param {number} availableWidth
-   * @param {number} availableHeight
+   * @param {number} tps
    */
-  update(availableWidth, availableHeight) {
+  update(tps) {
     for (const item of this.items) {
-      item.update(availableWidth, availableHeight);
+      item.update(tps);
     }
   }
 

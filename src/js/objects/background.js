@@ -1,4 +1,5 @@
-import {RenderedItem} from '../engine/renderedItem';
+import { RenderedItem } from '../engine/renderedItem';
+import backgroundSprite from '../../assets/images/bg_space.png';
 
 export class Background extends RenderedItem {
   constructor(source = "") {
@@ -12,18 +13,17 @@ export class Background extends RenderedItem {
   }
 
   /**
-   * @param {number} availableWidth
-   * @param {number} availableHeight
+   * @param {number} tps
    */
-	update(availableWidth, availableHeight) {
-    
-	}
+  update(tps) {
+
+  }
 
 	/**
    * @param {CanvasRenderingContext2D} ctx
    */
-	render(availableWidth, availableHeight, ctx) {
-    if(!this.isLoaded) return;
+  render(ctx) {
+    if (!this.isLoaded) return;
     ctx.drawImage(this.image, 0, 0);
-	}
+  }
 }
