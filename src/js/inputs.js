@@ -14,11 +14,11 @@ function keyup(e) {
 	Keys.keys[e.keyCode] = false;
 }
 
-function getKey(keyCode) {
+function getKey(keyCode = 0) {
 	return Keys.keys[keyCode];
 }
 
-function getKeyName(keyName) {
+function getKeyName(keyName = '') {
 	return Keys.keys[Keys.keyNames.indexOf(keyName.toUpperCase())];
 }
 
