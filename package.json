@@ -41,5 +41,13 @@
       "xo --fix",
       "git add"
     ]
+  },
+  "xo": {
+    "envs": ["node", "browser"],
+    "rules": {
+      "valid-jsdoc" : "off",
+      "unicorn/filename-case" : "off",
+      "no-unused-vars" : "off"
+    }
   }
 }
