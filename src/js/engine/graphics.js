@@ -27,9 +27,8 @@ export class Graphics {
     }
   }
 
-  render(timeStamp = 60) {
-    this.ctx.fillStyle = '#000';
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+  render(timeStamp = 0) {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     const tps = 1 / ((timeStamp - this._lastTimeStamp) / 1000);
     this._lastTimeStamp = timeStamp;
@@ -40,7 +39,7 @@ export class Graphics {
       layer.render(this.ctx);
     }
 
-    requestAnimationFrame(timeStamp => this.render(timeStamp));
+    requestAnimationFrame((timeStamp) => this.render(timeStamp));
   }
 
   initCanvasSize() {
