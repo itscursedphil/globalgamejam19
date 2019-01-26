@@ -16,6 +16,11 @@ export default class Player {
     this.maxSpeed = 1;
     this.sprite = new Sprite(spriteSheet, 0, 0);
     this.lowSpeedTolerance = 0.05;
+
+    this.interval = setInterval(() => {
+      console.log(this.position);
+      console.log(this.direction);
+    }, 1000);
   }
 
   gameTick(availableHeight, availableWidth, tps = 60) {
@@ -24,9 +29,6 @@ export default class Player {
 
     this.position.x += this.direction.x / tps;
     this.position.y += this.direction.y / tps;
-
-    console.log(this.position);
-    console.error(this.direction);
 
     this.rposition.x = Math.max(-1, Math.min(1, this.rposition.x));
     this.rposition.y = Math.max(-1, Math.min(1, this.rposition.y));

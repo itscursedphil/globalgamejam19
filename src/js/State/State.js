@@ -15,6 +15,9 @@ export default class State {
       this.player = new Player(this.spriteSheet);
       this.rs = new ResourceSpawner(this.player, this);
     });
+    this.interval = setInterval(() => {
+      console.log(this.envitems);
+    }, 1000);
   }
 
   update(availableHeight, availableWidth) {
