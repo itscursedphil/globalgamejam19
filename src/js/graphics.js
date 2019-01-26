@@ -29,6 +29,8 @@ export class Graphics {
 		this.ctx.fillStyle = '#000';
 		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
+		this.update();
+
 		for (const layer of this.layers) {
 			layer.render(this.ctx);
 		}

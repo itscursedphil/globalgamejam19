@@ -9,6 +9,14 @@ export default class State {
 		this.envitems = [];
 	}
 
+	update() {
+		this.gameTick();
+	}
+
+	render() {
+
+	}
+
 	gameTick(tps = 60) {
 		this.inventory.gameTick(tps);
 		this.player.gameTick(tps);

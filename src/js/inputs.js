@@ -1,7 +1,7 @@
 window.addEventListener('keydown', keydown);
 window.addEventListener('keyup', keyup);
 
-class Keys { }
+export default class Keys { }
 
 Keys.keys = [];
 
