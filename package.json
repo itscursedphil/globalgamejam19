@@ -41,7 +41,7 @@
       "unicorn/filename-case": 0,
       "no-unused-vars": 0,
       "no-mixed-operators": 0,
-      "valid-jsdoc" : "off",
+      "valid-jsdoc": "off",
       "camelcase": "off"
     }
   },
@@ -65,5 +65,5 @@
       "xo --fix",
       "git add"
     ]
-  }  
+  }
 }

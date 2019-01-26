@@ -22,7 +22,7 @@ export class Background extends RenderedItem {
 	/**
    * @param {CanvasRenderingContext2D} ctx
    */
-	render(ctx) {
+	render(availableWidth, availableHeight, ctx) {
     if(!this.isLoaded) return;
     ctx.drawImage(this.image, 0, 0);
 	}

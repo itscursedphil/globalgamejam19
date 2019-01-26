@@ -1,4 +1,4 @@
-import {RenderedItem} from './renderedItem';
+import {RenderedItem} from './engine/renderedItem';
 
 export class Background extends RenderedItem {
 	constructor(source = '') {
@@ -16,7 +16,7 @@ export class Background extends RenderedItem {
    * @param {number} availableHeight
    */
 	update(availableWidth, availableHeight) {
-
+    
 	}
 
 	/**
