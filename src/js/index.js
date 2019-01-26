@@ -2,11 +2,11 @@
 import '@babel/polyfill';
 
 // Assets
-import img from '../assets/img/test.png';
+import img from '../assets/images/test.png';
 
 // Modules
-import SpriteSheet from './SpriteSheet';
-import Sprite from './Sprite';
+import SpriteSheet from './engine/spriteSheet';
+import Sprite from './engine/sprite';
 
 window.addEventListener('load', async () => {
   const canvas = document.querySelector('#canvas');
