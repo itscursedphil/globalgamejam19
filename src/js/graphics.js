@@ -21,17 +21,17 @@ export class Graphics {
 
 	update() {
 		for (const layer of this.layers) {
-      layer.update(this.canvas.width, this.canvas.height);
+			layer.update(this.canvas.width, this.canvas.height);
 		}
 	}
 
 	render() {
 		this.ctx.fillStyle = '#000';
 		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
 		for (const layer of this.layers) {
-      layer.render(this.ctx);
-		}    
+			layer.render(this.ctx);
+		}
 
 		requestAnimationFrame(() => this.render());
 	}
