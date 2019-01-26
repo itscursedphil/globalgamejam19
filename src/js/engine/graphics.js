@@ -2,7 +2,7 @@ import { RenderedItem } from './renderedItem';
 import { Layer } from './layer';
 
 export class Graphics {
-	/**
+  /**
    *
    * @param {Array.<Layer>} layers
    */
