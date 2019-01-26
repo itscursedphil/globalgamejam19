@@ -7,8 +7,17 @@ import img from '../assets/images/test.png';
 // Modules
 import SpriteSheet from './engine/spriteSheet';
 import Sprite from './engine/sprite';
+import UI from './engine/ui';
 
 window.addEventListener('load', async () => {
+  const ui = new UI();
+
+  setInterval(() => {
+    ui.setOxygen(Math.random());
+    ui.setFuel(Math.random());
+    ui.setFood(Math.random());
+  }, 800);
+
   const canvas = document.querySelector('#canvas');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
