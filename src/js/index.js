@@ -8,6 +8,7 @@ import img from '../assets/images/test.png';
 import SpriteSheet from './engine/spriteSheet';
 import Sprite from './engine/sprite';
 import UI from './engine/ui';
+import Text from './engine/text';
 
 window.addEventListener('load', async () => {
   const ui = new UI();
@@ -31,4 +32,9 @@ window.addEventListener('load', async () => {
 
   const sprite2 = new Sprite(sheet, 0, 0);
   sprite2.render(ctx, 400, 400, 45);
+
+  const text = new Text('Start your odyssey!');
+  text.reveal();
+
+  setTimeout(() => text.hide(), 2000);
 });
