@@ -5,18 +5,18 @@ import Vector2 from './vector2';
 
 export default class Player {
   /**
-     * @param {SpriteSheet} spriteSheet
-     */
+   * @param {SpriteSheet} spriteSheet
+   */
   constructor(spriteSheet) {
     this.direction = new Vector2(0, 0);
     this.position = new Vector2(0, 0);
     this.acceleration = 0.01;
     this.maxSpeed = 1;
-    this.sprite = new Sprite(spriteSheet, 0, 0);
+    this.sprite = new Sprite(spriteSheet, 3, 7);
     this.lowSpeedTolerance = 0.05;
   }
 
-  gameTick(availableHeight, availableWidth, tps = 60) {
+  gameTick(tps = 60) {
     this.position.x += this.direction.x / tps;
     this.position.y += this.direction.y / tps;
 
@@ -76,21 +76,21 @@ export default class Player {
   }
 
   /**
-     *
-     * @param {CanvasRenderingContext2D} ctx
-     */
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   */
   render(ctx) {
     this.sprite.render(
-      ctx, 
+      ctx,
       Math.max(
-        128, 
+        256,
         Math.min(
-          ctx.canvas.width - 128, 
-          ctx.canvas.width / 2 - 64 + this.position.x * ctx.canvas.width / 2)), 
+          ctx.canvas.width - 256,
+          ctx.canvas.width / 2 - 256 + this.position.x * ctx.canvas.width / 2)),
       Math.max(
-        128,
+        256,
         Math.min(
-          ctx.canvas.height - 128,
-          ctx.canvas.height / 2 - 64 + this.position.y * ctx.canvas.height / 2)));
+          ctx.canvas.height - 256,
+          ctx.canvas.height / 2 - 256 + this.position.y * ctx.canvas.height / 2)));
   }
 }
