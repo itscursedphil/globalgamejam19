@@ -1,4 +1,5 @@
 import Event from '../engine/event';
+import CollisionCheck from '../collision';
 
 export default class ResourceSpawner {
   constructor(resource, player) {
