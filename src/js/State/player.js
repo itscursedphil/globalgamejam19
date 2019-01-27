@@ -14,7 +14,7 @@ export default class Player {
     this.position = new Vector2(0, 0);
     this.acceleration = 0.01;
     this.maxSpeed = 1;
-    this.sprite = new Sprite(spriteSheet, 3, 7);
+    this.sprite = new Sprite(spriteSheet, 3, 7, 0.5);
     this.lowSpeedTolerance = 0.05;
 
     this.interval = setInterval(() => {
@@ -23,7 +23,10 @@ export default class Player {
     }, 1000);
   }
 
-  gameTick(tps = 60) {
+  gameTick(availableHeight, availableWidth, tps = 60) {
+    this.rposition.x += this.rdirection.x / tps;
+    this.rposition.y += this.rdirection.y / tps;
+
     this.position.x += this.direction.x / tps;
     this.position.y += this.direction.y / tps;
 
@@ -82,7 +85,7 @@ export default class Player {
       this.rdirection.y = 0;
     }
 
-    if (this.rposition.x > 0.05 || this.rposition.x < -0.05 || this.rposition.y > 0.05 || this.rposition.y < -0.05) {
+    if (this.rposition.x > 0.4 || this.rposition.x < -0.4 || this.rposition.y > 0.4 || this.rposition.y < -0.4) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         this.rdirection.x *= 0.9;
       }
@@ -92,7 +95,7 @@ export default class Player {
       }
     }
 
-    if (this.rposition.x > 0.15 || this.rposition.x < -0.15 || this.rposition.y > 0.15 || this.rposition.y < -0.15) {
+    if (this.rposition.x > 0.5 || this.rposition.x < -0.5 || this.rposition.y > 0.5 || this.rposition.y < -0.5) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         if (this.rdirection.x !== 0) {
           this.direction.x += hasAccelerated ? this.rdirection.x < 0 ? -this.acceleration : this.acceleration : 0;
@@ -116,21 +119,13 @@ export default class Player {
   }
 
   /**
-   *
-   * @param {CanvasRenderingContext2D} ctx
-   */
+       *
+       * @param {CanvasRenderingContext2D} ctx
+       */
   render(ctx) {
     this.sprite.render(
       ctx,
-      Math.max(
-        256,
-        Math.min(
-          ctx.canvas.width - 256,
-          ctx.canvas.width / 2 - 256 + this.position.x * ctx.canvas.width / 2)),
-      Math.max(
-        256,
-        Math.min(
-          ctx.canvas.height - 256,
-          ctx.canvas.height / 2 - 256 + this.position.y * ctx.canvas.height / 2)));
+      ctx.canvas.width / 2 - 128 + this.rposition.x * ctx.canvas.width / 2,
+      ctx.canvas.height / 2 - 128 + this.rposition.y * ctx.canvas.height / 2);
   }
 }

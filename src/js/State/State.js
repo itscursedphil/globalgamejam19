@@ -1,7 +1,4 @@
-import spriteFile from '../../assets/images/spr_assets_128.png';
 import ResourceSpawner from '../resourceSpawner';
-import SpriteSheet from '../engine/spriteSheet';
-import Sprite from '../engine/sprite';
 import Inventory from './inventory';
 import Player from './player';
 import EnvItem from './envItem';

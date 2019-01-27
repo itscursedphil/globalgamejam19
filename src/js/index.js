@@ -14,9 +14,10 @@ window.addEventListener('load', () => {
       [
         new Layer(
           [
-            new Background(state.player, 1),
-            new Background(state.player, 2),
-            new Background(state.player, 3)
+            new Background(state, 1),
+            new Background(state, 2),
+            new Background(state, 3)
           ]),
         new Layer([state])
       ]);
+});
