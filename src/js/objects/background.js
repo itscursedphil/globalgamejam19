@@ -58,7 +58,7 @@ export class Background extends RenderedItem {
     }
 
     this.verticalScrollPosition = 
-      (this.verticalScrollPosition - this.player.direction.y * paralaxRatio) % 1000;
+      (this.verticalScrollPosition + this.player.direction.y * paralaxRatio) % 1000;
 
     if(this.verticalScrollPosition < 0) {
       this.verticalScrollPosition = 1000 + this.verticalScrollPosition;
