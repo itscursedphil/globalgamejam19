@@ -85,7 +85,7 @@ export default class Player {
       this.rdirection.y = 0;
     }
 
-    if (this.rposition.x > 0.05 || this.rposition.x < -0.05 || this.rposition.y > 0.05 || this.rposition.y < -0.05) {
+    if (this.rposition.x > 0.4 || this.rposition.x < -0.4 || this.rposition.y > 0.4 || this.rposition.y < -0.4) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         this.rdirection.x *= 0.9;
       }
@@ -95,7 +95,7 @@ export default class Player {
       }
     }
 
-    if (this.rposition.x > 0.15 || this.rposition.x < -0.15 || this.rposition.y > 0.15 || this.rposition.y < -0.15) {
+    if (this.rposition.x > 0.5 || this.rposition.x < -0.5 || this.rposition.y > 0.5 || this.rposition.y < -0.5) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         if (this.rdirection.x !== 0) {
           this.direction.x += hasAccelerated ? this.rdirection.x < 0 ? -this.acceleration : this.acceleration : 0;
