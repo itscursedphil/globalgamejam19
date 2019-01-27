@@ -32,7 +32,7 @@
     "bracketSpacing": true
   },
   "xo": {
-    "space": true,
+    "prettier": true,
     "envs": [
       "node",
       "browser"

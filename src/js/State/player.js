@@ -5,8 +5,8 @@ import Vector2 from './vector2';
 
 export default class Player {
   /**
-       * @param {SpriteSheet} spriteSheet
-       */
+   * @param {SpriteSheet} spriteSheet
+   */
   constructor(spriteSheet) {
     this.rdirection = new Vector2(0, 0);
     this.rposition = new Vector2(0, 0);
@@ -14,7 +14,7 @@ export default class Player {
     this.position = new Vector2(0, 0);
     this.acceleration = 0.01;
     this.maxSpeed = 1;
-    this.sprite = new Sprite(spriteSheet, 0, 0);
+    this.sprite = new Sprite(spriteSheet, 3, 7, 0.5);
     this.lowSpeedTolerance = 0.05;
 
     this.interval = setInterval(() => {
@@ -125,7 +125,7 @@ export default class Player {
   render(ctx) {
     this.sprite.render(
       ctx,
-      ctx.canvas.width / 2 - 64 + this.rposition.x * ctx.canvas.width / 2,
-      ctx.canvas.height / 2 - 64 + this.rposition.y * ctx.canvas.height / 2);
+      ctx.canvas.width / 2 - 128 + this.rposition.x * ctx.canvas.width / 2,
+      ctx.canvas.height / 2 - 128 + this.rposition.y * ctx.canvas.height / 2);
   }
 }
