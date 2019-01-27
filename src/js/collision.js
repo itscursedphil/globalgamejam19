@@ -1,6 +1,3 @@
-import Player from './State/player';
-import EnvItem from './State/envItem';
-
 /**
  *
  * @param {Player} player

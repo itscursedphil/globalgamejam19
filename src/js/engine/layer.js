@@ -12,12 +12,12 @@ export class Layer extends RenderedItem {
   async initialize() {
     const promises = [];
     for (const item of this.items) {
-      if (item.initialize)
-        promises.push(item.initialize());
+      if (item.initialize) promises.push(item.initialize());
     }
 
     await Promise.all(promises);
   }
+
   /**
    * @param {number} tps
    */

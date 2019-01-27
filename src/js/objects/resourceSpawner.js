@@ -1,11 +1,15 @@
 import Event from '../engine/event';
-import CollisionCheck from '../collision';
+import Vector2 from '../vector2';
 
 export default class ResourceSpawner {
   constructor(resource, player) {
     this.resource = resource;
-    this.player = player;
+    this._player = player;
     this._baseSpawnDelay = 4000;
+    this._prevPlayerPos = new Vector2(
+      player.position.x + player.rposition.x,
+      player.position.y + player.rposition.x
+    );
 
     this._createSpawnEvent();
   }
@@ -29,11 +33,32 @@ export default class ResourceSpawner {
     const spawnDelay = this._calcSpawnDelay();
 
     this._spawnEvent = new Event(spawnDelay, () => {
+      if (this._shouldSpawn()) this._spawn();
+
       this._createSpawnEvent();
     });
   }
 
+  _spawn() {
+    const dist = window.innerWidth;
+
+    const playerPosX = this._player.position.x + this._player.rposition.x;
+    const playerPosY = this._player.position.y + this._player.rposition.y;
+
+    const travelX = playerPosX - this._prevPlayerPos.x;
+    const travelY = playerPosY - this._prevPlayerPos.y;
+
+    const posX = playerPosX + travelX * dist;
+    const posY = playerPosY + travelY * dist;
+
+    // Console.log(posX, posY);
+  }
+
   update(tsp) {
     this._spawnEvent.update(tsp);
+    this._prevPlayerPos = new Vector2(
+      this._player.position.x + this._player.rposition.x,
+      this._player.position.y + this._player.rposition.y
+    );
   }
 }
