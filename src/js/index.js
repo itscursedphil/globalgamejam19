@@ -20,3 +20,4 @@ window.addEventListener('load', () => {
           ]),
         new Layer([state])
       ]);
+});
