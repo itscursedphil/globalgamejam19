@@ -1,7 +1,7 @@
 import Keys from '../engine/inputs';
 import SpriteSheet from '../engine/spriteSheet';
 import Sprite from '../engine/sprite';
-import Vector2 from '../State/vector2';
+import Vector2 from '../vector2';
 import { RenderedItem } from '../engine/renderedItem';
 
 export default class Player extends RenderedItem {
@@ -82,7 +82,12 @@ export default class Player extends RenderedItem {
       this.rdirection.y = 0;
     }
 
-    if (this.rposition.x > 0.4 || this.rposition.x < -0.4 || this.rposition.y > 0.4 || this.rposition.y < -0.4) {
+    if (
+      this.rposition.x > 0.4 ||
+      this.rposition.x < -0.4 ||
+      this.rposition.y > 0.4 ||
+      this.rposition.y < -0.4
+    ) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         this.rdirection.x *= 0.9;
       }
@@ -92,10 +97,19 @@ export default class Player extends RenderedItem {
       }
     }
 
-    if (this.rposition.x > 0.5 || this.rposition.x < -0.5 || this.rposition.y > 0.5 || this.rposition.y < -0.5) {
+    if (
+      this.rposition.x > 0.5 ||
+      this.rposition.x < -0.5 ||
+      this.rposition.y > 0.5 ||
+      this.rposition.y < -0.5
+    ) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         if (this.rdirection.x !== 0) {
-          this.direction.x += hasAccelerated ? this.rdirection.x < 0 ? -this.acceleration : this.acceleration : 0;
+          this.direction.x += hasAccelerated
+            ? this.rdirection.x < 0
+              ? -this.acceleration
+              : this.acceleration
+            : 0;
         }
 
         this.rdirection.x *= 0;
@@ -103,13 +117,22 @@ export default class Player extends RenderedItem {
 
       if (this.rdirection.y < 0 === this.rposition.y < 0) {
         if (this.rdirection.y !== 0) {
-          this.direction.y += hasAccelerated ? this.rdirection.y < 0 ? -this.acceleration : this.acceleration : 0;
+          this.direction.y += hasAccelerated
+            ? this.rdirection.y < 0
+              ? -this.acceleration
+              : this.acceleration
+            : 0;
         }
 
         this.rdirection.y *= 0;
       }
 
-      if (this.rposition.x < 0.15 && this.rposition.x > -0.15 && this.rposition.y < 0.15 && this.rposition.y > -0.15) {
+      if (
+        this.rposition.x < 0.15 &&
+        this.rposition.x > -0.15 &&
+        this.rposition.y < 0.15 &&
+        this.rposition.y > -0.15
+      ) {
         this.direction = new Vector2(0, 0);
       }
     }
@@ -121,7 +144,8 @@ export default class Player extends RenderedItem {
   render(ctx) {
     this.sprite.render(
       ctx,
-      ctx.canvas.width / 2 + this.rposition.x * ctx.canvas.width / 2,
-      ctx.canvas.height / 2 + this.rposition.y * ctx.canvas.height / 2);
+      ctx.canvas.width / 2 + (this.rposition.x * ctx.canvas.width) / 2,
+      ctx.canvas.height / 2 + (this.rposition.y * ctx.canvas.height) / 2
+    );
   }
 }

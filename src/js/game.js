@@ -1,10 +1,10 @@
 export class Game {
-  constructor() {    
+  constructor() {
     this._lastTimeStamp = 0;
-    this.updateCallback = (tps) => { };
-    this.renderCallback = (ctx) => { };
+    this.updateCallback = tps => {};
+    this.renderCallback = ctx => {};
     this.initializeCallback = async () => {};
-    window.addEventListener("load", () => this.start());
+    window.addEventListener('load', () => this.start());
   }
 
   async start() {
@@ -32,7 +32,7 @@ export class Game {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.renderCallback(this.ctx);
 
-    requestAnimationFrame((timeStamp) => this.tick(timeStamp));
+    requestAnimationFrame(timeStamp => this.tick(timeStamp));
   }
 
   initialize(callback) {

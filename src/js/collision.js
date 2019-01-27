@@ -1,5 +1,4 @@
-import Player from './State/player';
-import EnvItem from './State/envItem';
+import Player from './objects/player';
 
 /**
  *
