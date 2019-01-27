@@ -43,7 +43,7 @@ export default class Sprite {
 
     ctx.save();
     ctx.translate(posX, posY);
-    ctx.rotate((rotation * Math.PI) / 180);
+    ctx.rotate(rotation);
     ctx.drawImage(
       this.sheet.img,
       this.width * this.tileX,

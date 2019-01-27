@@ -33,19 +33,19 @@ export default class Player extends RenderedItem {
     let hasAccelerated = false;
     if (Keys.getKeyName('W')) {
       hasAccelerated = true;
-      if (this.direction.y > 0) {
-        this.direction.y -= this.acceleration;
+      if (this.direction.y < 0) {
+        this.direction.y += this.acceleration;
       } else {
-        this.rdirection.y -= this.acceleration;
+        this.rdirection.y += this.acceleration;
       }
     }
 
     if (Keys.getKeyName('S')) {
       hasAccelerated = true;
-      if (this.direction.y < 0) {
-        this.direction.y += this.acceleration;
+      if (this.direction.y > 0) {
+        this.direction.y -= this.acceleration;
       } else {
-        this.rdirection.y += this.acceleration;
+        this.rdirection.y -= this.acceleration;
       }
     }
 
@@ -119,9 +119,24 @@ export default class Player extends RenderedItem {
    * @param {CanvasRenderingContext2D} ctx
    */
   render(ctx) {
+    let angle = 0;
+    const combinedDirectionX = this.rdirection.x + this.direction.x;
+    const combinedDirectionY = this.rdirection.y + this.direction.y;
+    if (Math.abs(combinedDirectionX) > 0 || Math.abs(combinedDirectionY) > 0) {
+      angle = Math.acos(
+        combinedDirectionX /
+        Math.sqrt(
+          Math.pow(combinedDirectionX, 2) + Math.pow(combinedDirectionY, 2)));
+    }
+
+    if(combinedDirectionY > 0) {
+      angle = -angle;
+    }
+
     this.sprite.render(
       ctx,
       ctx.canvas.width / 2 + this.rposition.x * ctx.canvas.width / 2,
-      ctx.canvas.height / 2 + this.rposition.y * ctx.canvas.height / 2);
+      ctx.canvas.height - (ctx.canvas.height / 2 + this.rposition.y * ctx.canvas.height / 2),
+      Math.PI / 2 + angle);
   }
 }
