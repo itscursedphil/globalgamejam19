@@ -6,7 +6,6 @@ export default class Keys { }
 Keys.keys = [];
 
 function keydown(e) {
-	console.log(e);
 	Keys.keys[e.keyCode] = true;
 }
 
