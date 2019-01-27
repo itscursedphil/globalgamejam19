@@ -1,7 +1,7 @@
 import Keys from '../engine/inputs';
 import SpriteSheet from '../engine/spriteSheet';
 import Sprite from '../engine/sprite';
-import Vector2 from '../State/vector2';
+import Vector2 from '../vector2';
 import { RenderedItem } from '../engine/renderedItem';
 
 export default class Player extends RenderedItem {

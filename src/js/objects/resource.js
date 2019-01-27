@@ -7,8 +7,7 @@ export default class Resource {
     this.name = name;
     this.value = 1.0;
     this._maxValue = 1.0;
-    // This._modValue = 0.0005;
-    this._modValue = 0.01;
+    this._modValue = 0.0005;
   }
 
   setValue(val) {

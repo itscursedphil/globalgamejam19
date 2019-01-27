@@ -4,7 +4,7 @@ export default class UI {
       ui: document.querySelector('#ui'),
       fuel: document.querySelector('.stat.-fuel .stat-bar'),
       oxygen: document.querySelector('.stat.-oxygen .stat-bar'),
-      food: document.querySelector('.stat.-food .stat-bar')
+      supplies: document.querySelector('.stat.-supplies .stat-bar')
     };
   }
 
@@ -23,7 +23,7 @@ export default class UI {
     this._setVal('oxygen', val);
   }
 
-  setFood(val = 1) {
-    this._setVal('food', val);
+  setSupplies(val = 1) {
+    this._setVal('supplies', val);
   }
 }

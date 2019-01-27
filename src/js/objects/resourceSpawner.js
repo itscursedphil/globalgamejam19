@@ -1,5 +1,5 @@
 import Event from '../engine/event';
-import Vector2 from '../State/vector2';
+import Vector2 from '../vector2';
 
 export default class ResourceSpawner {
   constructor(resource, player) {
