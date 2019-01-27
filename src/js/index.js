@@ -1,6 +1,5 @@
 import "@babel/polyfill"
 import { Graphics } from './engine/graphics';
-import { RenderedItem } from './engine/renderedItem';
 import { Layer } from './engine/layer';
 import { Background } from './objects/background';
 import State from './State/State';
