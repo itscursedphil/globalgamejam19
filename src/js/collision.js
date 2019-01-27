@@ -1,5 +1,3 @@
-import Player from './objects/player';
-
 /**
  *
  * @param {Player} player

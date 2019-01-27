@@ -50,6 +50,8 @@ export default class ResourceSpawner {
 
     const posX = playerPosX + travelX * dist;
     const posY = playerPosY + travelY * dist;
+
+    // Console.log(posX, posY);
   }
 
   update(tsp) {
