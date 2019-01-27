@@ -10,7 +10,7 @@ export default class ResourceItem {
 
   update(tps, player) {
     this._object.update(tps, player);
-    this._rotation += 0.5;
+    this._rotation += 0.01;
   }
 
   render(ctx) {

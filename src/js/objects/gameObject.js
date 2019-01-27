@@ -11,7 +11,7 @@ export default class GameObject {
     if (this._sprite.update) this._sprite.update(tps);
 
     this._x = this._x - player.direction.x;
-    this._y = this._y - player.direction.y;
+    this._y = this._y + player.direction.y;
   }
 
   render(ctx, rotation = 0) {
