@@ -3,13 +3,21 @@ import '@babel/polyfill';
 import sheetImg from '../assets/images/spr_assets_512.png';
 
 import { Graphics } from './engine/graphics';
-import { RenderedItem } from './engine/renderedItem';
 import { Layer } from './engine/layer';
 import SpriteSheet from './engine/spriteSheet';
 import Sprite from './engine/sprite';
 import Animation from './engine/animatedSprite';
+import ResourceSpawner from './objects/resourceSpawner';
 
 window.addEventListener('load', async () => {
+  const resource = {
+    value: 1
+  };
+  const spawner = new ResourceSpawner(resource);
+  setInterval(() => {
+    spawner.update(60);
+  }, 1000 / 60);
+
   const sheet = new SpriteSheet(sheetImg, 512, 512);
 
   const idleSprite = new Sprite(sheet, 0, 7);
