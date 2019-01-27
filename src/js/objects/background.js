@@ -4,21 +4,20 @@ import backgroundSpriteLayer2 from '../../assets/images/bg_stars.png';
 import backgroundSpriteLayer3 from '../../assets/images/bg_stars_layer2.png';
 import SpriteSheet from '../engine/spriteSheet';
 import Sprite from '../engine/sprite';
-import Keys from '../inputs';
-import Vector2 from './../State/vector2';
+import State from '../State/State';
 
 export class Background extends RenderedItem {
   /**
-   * @param {Player} player 
+   * @param {State} state 
    * @param {number} layer
    */
-  constructor(player, layer = 1) {
+  constructor(state, layer = 1) {
     super();
-    this.player = player;
+    this.state = state;
     this.layer = layer;
     this.scrollSpeed = 0.1;
-    this.horizontalScrollPosition = 0;
-    this.verticalScrollPosition = 0;
+    this.horizontalScrollPosition = 800;
+    this.verticalScrollPosition = -100;
     let sprite = "";
     switch (this.layer) {
       case 1:
@@ -40,7 +39,6 @@ export class Background extends RenderedItem {
     });
     this.acceleration = 0.01;
     this.maxSpeed = 1;
-    this.direction = new Vector2(0, 0);
   }
 
   /**
@@ -49,10 +47,21 @@ export class Background extends RenderedItem {
   update(tps) {
     const paralaxRatio = 1 + 0.5 * this.layer;
 
+    if (!this.state.player) return;
+
     this.horizontalScrollPosition = 
-      (this.horizontalScrollPosition - paralaxRatio) % 10000;
-    // this.verticalScrollPosition = 
-    //   (this.verticalScrollPosition + (1 / 3 - this.layer)) % 1000;
+      (this.horizontalScrollPosition + this.state.player.direction.x * paralaxRatio) % 1000;
+
+    if(this.horizontalScrollPosition < 0) {
+      this.horizontalScrollPosition = 1000 + this.horizontalScrollPosition;
+    }
+
+    this.verticalScrollPosition = 
+      (this.verticalScrollPosition - this.state.player.direction.y * paralaxRatio) % 1000;
+
+    if(this.verticalScrollPosition < 0) {
+      this.verticalScrollPosition = 1000 + this.verticalScrollPosition;
+    }
   }
 
 	/**
@@ -62,9 +71,9 @@ export class Background extends RenderedItem {
     if (!this.sprite) return;
 
     const horizontolOffsetPixel =
-      (-this.horizontalScrollPosition / 10000) * 3840;
+      (-this.horizontalScrollPosition / 1000) * 3840;
     const verticalScrollPositionPixel =
-      (this.verticalScrollPosition / 10000) * 1080;
+      (this.verticalScrollPosition / 1000) * 1080;
 
     this.sprite.render(ctx, -3840 + horizontolOffsetPixel, - 1080 + verticalScrollPositionPixel);
     this.sprite.render(ctx, horizontolOffsetPixel, - 1080 + verticalScrollPositionPixel);
