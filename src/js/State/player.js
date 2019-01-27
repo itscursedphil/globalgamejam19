@@ -17,10 +17,10 @@ export default class Player {
     this.sprite = new Sprite(spriteSheet, 3, 7, 0.5);
     this.lowSpeedTolerance = 0.05;
 
-    this.interval = setInterval(() => {
-      console.log(this.position);
-      console.log(this.direction);
-    }, 1000);
+    // This.interval = setInterval(() => {
+    //   console.log(this.position);
+    //   console.log(this.direction);
+    // }, 1000);
   }
 
   gameTick(availableHeight, availableWidth, tps = 60) {
@@ -85,7 +85,12 @@ export default class Player {
       this.rdirection.y = 0;
     }
 
-    if (this.rposition.x > 0.4 || this.rposition.x < -0.4 || this.rposition.y > 0.4 || this.rposition.y < -0.4) {
+    if (
+      this.rposition.x > 0.4 ||
+      this.rposition.x < -0.4 ||
+      this.rposition.y > 0.4 ||
+      this.rposition.y < -0.4
+    ) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         this.rdirection.x *= 0.9;
       }
@@ -95,10 +100,19 @@ export default class Player {
       }
     }
 
-    if (this.rposition.x > 0.5 || this.rposition.x < -0.5 || this.rposition.y > 0.5 || this.rposition.y < -0.5) {
+    if (
+      this.rposition.x > 0.5 ||
+      this.rposition.x < -0.5 ||
+      this.rposition.y > 0.5 ||
+      this.rposition.y < -0.5
+    ) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         if (this.rdirection.x !== 0) {
-          this.direction.x += hasAccelerated ? this.rdirection.x < 0 ? -this.acceleration : this.acceleration : 0;
+          this.direction.x += hasAccelerated
+            ? this.rdirection.x < 0
+              ? -this.acceleration
+              : this.acceleration
+            : 0;
         }
 
         this.rdirection.x *= 0;
@@ -106,26 +120,36 @@ export default class Player {
 
       if (this.rdirection.y < 0 === this.rposition.y < 0) {
         if (this.rdirection.y !== 0) {
-          this.direction.y += hasAccelerated ? this.rdirection.y < 0 ? -this.acceleration : this.acceleration : 0;
+          this.direction.y += hasAccelerated
+            ? this.rdirection.y < 0
+              ? -this.acceleration
+              : this.acceleration
+            : 0;
         }
 
         this.rdirection.y *= 0;
       }
 
-      if (this.rposition.x < 0.15 && this.rposition.x > -0.15 && this.rposition.y < 0.15 && this.rposition.y > -0.15) {
+      if (
+        this.rposition.x < 0.15 &&
+        this.rposition.x > -0.15 &&
+        this.rposition.y < 0.15 &&
+        this.rposition.y > -0.15
+      ) {
         this.direction = new Vector2(0, 0);
       }
     }
   }
 
   /**
-       *
-       * @param {CanvasRenderingContext2D} ctx
-       */
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   */
   render(ctx) {
     this.sprite.render(
       ctx,
-      ctx.canvas.width / 2 - 128 + this.rposition.x * ctx.canvas.width / 2,
-      ctx.canvas.height / 2 - 128 + this.rposition.y * ctx.canvas.height / 2);
+      ctx.canvas.width / 2 - 128 + (this.rposition.x * ctx.canvas.width) / 2,
+      ctx.canvas.height / 2 - 128 + (this.rposition.y * ctx.canvas.height) / 2
+    );
   }
 }
