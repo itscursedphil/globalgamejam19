@@ -1,29 +1,26 @@
-import Keys from '../inputs';
+import Keys from '../engine/inputs';
 import SpriteSheet from '../engine/spriteSheet';
 import Sprite from '../engine/sprite';
-import Vector2 from './vector2';
+import Vector2 from '../State/vector2';
+import { RenderedItem } from '../engine/renderedItem';
 
-export default class Player {
+export default class Player extends RenderedItem {
   /**
    * @param {SpriteSheet} spriteSheet
    */
   constructor(spriteSheet) {
+    super();
     this.rdirection = new Vector2(0, 0);
     this.rposition = new Vector2(0, 0);
     this.direction = new Vector2(0, 0);
     this.position = new Vector2(0, 0);
     this.acceleration = 0.01;
     this.maxSpeed = 1;
-    this.sprite = new Sprite(spriteSheet, 3, 7, 0.5);
+    this.sprite = new Sprite(spriteSheet, 3, 7, 0.25);
     this.lowSpeedTolerance = 0.05;
-
-    // This.interval = setInterval(() => {
-    //   console.log(this.position);
-    //   console.log(this.direction);
-    // }, 1000);
   }
 
-  gameTick(availableHeight, availableWidth, tps = 60) {
+  update(tps = 60) {
     this.rposition.x += this.rdirection.x / tps;
     this.rposition.y += this.rdirection.y / tps;
 
@@ -142,14 +139,13 @@ export default class Player {
   }
 
   /**
-   *
    * @param {CanvasRenderingContext2D} ctx
    */
   render(ctx) {
     this.sprite.render(
       ctx,
-      ctx.canvas.width / 2 - 128 + (this.rposition.x * ctx.canvas.width) / 2,
-      ctx.canvas.height / 2 - 128 + (this.rposition.y * ctx.canvas.height) / 2
+      ctx.canvas.width / 2 + (this.rposition.x * ctx.canvas.width) / 2,
+      ctx.canvas.height / 2 + (this.rposition.y * ctx.canvas.height) / 2
     );
   }
 }

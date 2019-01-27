@@ -1,15 +1,13 @@
 export class RenderedItem {
+  async initialize() {}
+
   /**
    * @param {number} tps
    */
-  update(tps) {
-
-  }
+  update(tps) {}
 
   /**
    * @param {CanvasRenderingContext2D} ctx
    */
-  render(ctx) {
-
-  }
+  render(ctx) {}
 }

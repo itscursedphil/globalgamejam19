@@ -1,4 +1,4 @@
-import {RenderedItem} from './renderedItem';
+import { RenderedItem } from './renderedItem';
 
 export class Layer extends RenderedItem {
   /**
@@ -7,6 +7,15 @@ export class Layer extends RenderedItem {
   constructor(items) {
     super();
     this.items = items;
+  }
+
+  async initialize() {
+    const promises = [];
+    for (const item of this.items) {
+      if (item.initialize) promises.push(item.initialize());
+    }
+
+    await Promise.all(promises);
   }
 
   /**
