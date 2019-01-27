@@ -4,7 +4,7 @@ import backgroundSpriteLayer2 from '../../assets/images/bg_stars.png';
 import backgroundSpriteLayer3 from '../../assets/images/bg_stars_layer2.png';
 import SpriteSheet from '../engine/spriteSheet';
 import Sprite from '../engine/sprite';
-import Player from '../State/player';
+import Player from '../objects/player';
 
 export class Background extends RenderedItem {
   /**
