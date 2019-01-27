@@ -1,23 +1,44 @@
 import "@babel/polyfill"
-import { Graphics } from './engine/graphics';
-import { RenderedItem } from './engine/renderedItem';
 import { Layer } from './engine/layer';
 import { Background } from './objects/background';
-import State from './State/State';
-import image from '../assets/images/bg_space.png'
-import Player from "./State/player";
+import spriteSheetObjectsSource from '../assets/images/spr_assets_512.png'
+import Player from "./objects/player";
+import { Game } from "./game";
+import SpriteSheet from "./engine/spriteSheet";
 
-window.addEventListener('load', () => {
-  const state = new State();
-  const graphics =
-    new Graphics(
+const game = new Game();
+const spriteSheetObjects = new SpriteSheet(spriteSheetObjectsSource, 512, 512);
+const player = new Player(spriteSheetObjects);
+const layers =
+  [
+    new Layer(
       [
-        new Layer(
-          [
-            new Background(state, 1),
-            new Background(state, 2),
-            new Background(state, 3)
-          ]),
-        new Layer([state])
-      ]);
+        new Background(player, 1),
+        new Background(player, 2),
+        new Background(player, 3)
+      ]),
+    new Layer(
+      [
+        player
+      ]
+    )
+  ];
+
+game.initialize(async () => {
+  await spriteSheetObjects.load();  
+  for (const layer of layers) {
+    await layer.initialize();
+  }
+});
+
+game.update((tps) => {
+  for (const layer of layers) {
+    layer.update(tps);
+  }
+});
+
+game.render((ctx) => {
+  for (const layer of layers) {
+    layer.render(ctx);
+  }
 });

@@ -1,4 +1,8 @@
 export class RenderedItem {
+  async initialize() {
+    
+  }
+
   /**
    * @param {number} tps
    */

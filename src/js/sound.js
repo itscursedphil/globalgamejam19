@@ -80,10 +80,6 @@ export default class Sound {
 		}, 10);
 	}
 
-	loop(bool) {
-		this.loop = bool;
-	}
-
 	loopTimes(times) {
 		this.loop = true;
 		this.loopcount = times;
