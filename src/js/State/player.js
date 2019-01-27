@@ -85,7 +85,7 @@ export default class Player {
       this.rdirection.y = 0;
     }
 
-    if (this.rposition.x > 0.05 || this.rposition.x < -0.05 || this.rposition.y > 0.05 || this.rposition.y < -0.05) {
+    if (this.rposition.x > 0.4 || this.rposition.x < -0.4 || this.rposition.y > 0.4 || this.rposition.y < -0.4) {
       if (this.rdirection.x < 0 === this.rposition.x < 0) {
         this.rdirection.x *= 0.9;
       }
