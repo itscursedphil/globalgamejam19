@@ -1,4 +1,4 @@
-import {posix} from 'path';
+import { posix } from 'path';
 import Player from './State/player';
 import Vector2 from './State/vector2';
 import State from './State/State';
@@ -13,8 +13,15 @@ export default class ResourceSpawner {
   }
 
   spawnLoop(t) {
-    if (t.storedPlayerPos.x !== t.player.position.x || t.storedPlayerPos.y !== t.player.position.y) {
-      this.spawn(t.player.position.x - t.storedPlayerPos.x, t.player.position.y - t.storedPlayerPos.y, t);
+    if (
+      t.storedPlayerPos.x !== t.player.position.x ||
+      t.storedPlayerPos.y !== t.player.position.y
+    ) {
+      this.spawn(
+        t.player.position.x - t.storedPlayerPos.x,
+        t.player.position.y - t.storedPlayerPos.y,
+        t
+      );
     }
 
     t.storedPlayerPos = new Vector2(t.player.position.x, t.player.position.y);
@@ -23,7 +30,10 @@ export default class ResourceSpawner {
   spawn(X = 0, Y = 0, T) {
     const distances = [];
     for (let index = 0; index < T.state.envitems.length; index++) {
-      const distance = new Vector2(T.player.position.x - T.state.envitems[index].position.x, T.player.position.y - T.state.envitems[index].position.y).speed();
+      const distance = new Vector2(
+        T.player.position.x - T.state.envitems[index].position.x,
+        T.player.position.y - T.state.envitems[index].position.y
+      ).speed();
       distances.push(distance);
     }
 
@@ -74,5 +84,5 @@ export default class ResourceSpawner {
   }
 }
 function randomFloatFromInterval(min, max) {
-  return (Math.random() * (max - min) + min);
+  return Math.random() * (max - min) + min;
 }
